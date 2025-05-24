@@ -1,0 +1,159 @@
+[gd_scene load_steps=13 format=3 uid="uid://ckq5dt62211w8"]
+
+[ext_resource type="Script" path="res://src/ui/menus/myth_select_page.gd" id="1_ai8b3"]
+[ext_resource type="Texture2D" uid="uid://t8itphhvx8vu" path="res://assets/background_scene.png" id="2_bhh1d"]
+[ext_resource type="Script" path="res://media/ui/buttons/Return.gd" id="2_jbji8"]
+[ext_resource type="Theme" uid="uid://cdur805sc8olm" path="res://media/ui/themes/basic_theme.tres" id="3_nb0ty"]
+[ext_resource type="Texture2D" uid="uid://2ucg0r5mwv6k" path="res://assets/gen_icon.png" id="3_xx24e"]
+[ext_resource type="Texture2D" uid="uid://i1ygmure1m81" path="res://assets/div_icon.png" id="4_cw2fy"]
+[ext_resource type="PackedScene" uid="uid://b21nluxsc7oxj" path="res://media/star_particle.tscn" id="7_0bxf2"]
+[ext_resource type="AudioStream" uid="uid://cj3rqngy2kxuu" path="res://assets/drum.wav" id="8_7r1a8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8iymy"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_l1dq1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.557514, 0.940909), -1.79207, -1.79207, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_q6h3y"]
+curve = SubResource("Curve_l1dq1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m225e"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(350, 120, 1)
+angle_max = 360.0
+angular_velocity_min = 15.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.15
+color = Color(0.74902, 1, 0.996078, 0.619608)
+alpha_curve = SubResource("CurveTexture_q6h3y")
+
+[node name="MythSelectPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ai8b3")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bhh1d")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 192.0
+offset_bottom = -118.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 128
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="Return" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -102.0
+offset_top = -46.0
+offset_right = -19.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_nb0ty")
+theme_override_font_sizes/font_size = 18
+text = "Return"
+script = ExtResource("2_jbji8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.5
+offset_top = -36.0
+offset_right = 140.5
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme = ExtResource("3_nb0ty")
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+self_modulate = Color(0.498655, 0.629146, 0.776681, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_xx24e")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Generations"
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+self_modulate = Color(0.498655, 0.629146, 0.776681, 1)
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_cw2fy")
+expand_mode = 1
+stretch_mode = 4
+flip_v = true
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Divergence
+"
+
+[node name="GPUParticles2D2" parent="." instance=ExtResource("7_0bxf2")]
+material = SubResource("CanvasItemMaterial_8iymy")
+position = Vector2(256, 128)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_m225e")
+explosiveness = 0.2
+randomness = 0.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7r1a8")
+pitch_scale = 0.5
+
+[connection signal="mouse_entered" from="Return" to="AudioStreamPlayer" method="play"]
+[connection signal="pressed" from="Return" to="Return" method="_on_pressed"]

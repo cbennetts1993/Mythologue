@@ -1,0 +1,129 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfbfsxtv3oxjp"]
+
+[ext_resource type="Script" path="res://src/MythState/MythStateMachine.gd" id="1_2fody"]
+[ext_resource type="PackedScene" uid="uid://drwskd2xatxxd" path="res://media/ui/message_box.tscn" id="1_66320"]
+[ext_resource type="Script" path="res://src/MythState/MythStoryState.gd" id="2_67ns7"]
+[ext_resource type="Script" path="res://src/MythState/MythQuestionState.gd" id="3_mwbll"]
+[ext_resource type="Theme" uid="uid://cdur805sc8olm" path="res://media/ui/themes/basic_theme.tres" id="4_cpocl"]
+[ext_resource type="Texture2D" uid="uid://t8itphhvx8vu" path="res://assets/background_scene.png" id="4_mtqmx"]
+[ext_resource type="Script" path="res://src/ui/UserInputBox.gd" id="4_vl004"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52bet"]
+bg_color = Color(0.262745, 0.262745, 0.262745, 0.662745)
+
+[node name="MythPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("story_state", "question_state", "initial_state")]
+script = ExtResource("1_2fody")
+story_state = NodePath("StoryState")
+question_state = NodePath("QuestionState")
+initial_state = NodePath("StoryState")
+
+[node name="StoryState" type="Node" parent="StateMachine" node_paths=PackedStringArray("messagebox")]
+script = ExtResource("2_67ns7")
+messagebox = NodePath("../../MarginContainer/RichTextLabel")
+
+[node name="QuestionState" type="Node" parent="StateMachine" node_paths=PackedStringArray("messagebox", "edit_box")]
+script = ExtResource("3_mwbll")
+messagebox = NodePath("../../MarginContainer/RichTextLabel")
+edit_box = NodePath("../../MarginContainer2/TextEdit")
+answer_threshold = 0.35
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.172842, 0.231807, 0.399739, 1)
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_mtqmx")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 608.0
+offset_bottom = -214.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 128
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_52bet")
+
+[node name="RichTextLabel" parent="MarginContainer" instance=ExtResource("1_66320")]
+custom_minimum_size = Vector2(440, 256)
+layout_mode = 2
+text = ""
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -118.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("4_cpocl")
+placeholder_text = "Tell me..."
+context_menu_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+script = ExtResource("4_vl004")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = 357.0
+offset_right = 65.0
+offset_bottom = 405.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Next"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="state_entered" from="StateMachine/StoryState" to="MarginContainer2" method="hide"]
+[connection signal="state_entered" from="StateMachine/StoryState" to="MarginContainer2/TextEdit" method="disable"]
+[connection signal="state_entered" from="StateMachine/StoryState" to="Button" method="show"]
+[connection signal="question_presented" from="StateMachine/QuestionState" to="MarginContainer2" method="show"]
+[connection signal="question_presented" from="StateMachine/QuestionState" to="MarginContainer2/TextEdit" method="enable"]
+[connection signal="question_presented" from="StateMachine/QuestionState" to="Button" method="hide"]
+[connection signal="answer_submitted" from="MarginContainer2/TextEdit" to="StateMachine/QuestionState" method="_on_user_answer_recieved"]
+[connection signal="pressed" from="Button" to="StateMachine" method="advance"]
+
+[editable path="MarginContainer/RichTextLabel"]

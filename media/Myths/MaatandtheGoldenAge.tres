@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Myth" load_steps=5 format=3 uid="uid://b6wmlc8jkmcm1"]
+
+[ext_resource type="Script" path="res://src/myths/MythData.gd" id="1_21spo"]
+[ext_resource type="Script" path="res://src/myths/MythSegment/MythSegment.gd" id="1_ykifd"]
+
+[sub_resource type="Resource" id="Resource_bmtol"]
+script = ExtResource("1_ykifd")
+_base_text = "The anterior gods made the god of the horizon. Right was created in their time. Maat came from the sky in their time. She united with those who were on earth."
+text = "The anterior gods made the god of the horizon. Right was created in their time. Maat came from the sky in their time. She united with those who were on earth."
+divergence_history = {}
+question = "Tell me of when the gods made Maat."
+
+[sub_resource type="Resource" id="Resource_x4g0p"]
+script = ExtResource("1_ykifd")
+_base_text = "The earth was in abundance, and bellies were full. The Two Lands did not know famine. Walls did not crumble, and the thorn did not prick in the time of the anterior gods."
+text = "The earth was in abundance, and bellies were full. The Two Lands did not know famine. Walls did not crumble, and the thorn did not prick in the time of the anterior gods."
+divergence_history = {}
+question = "Tell me of the earth and the land under Maat."
+
+[resource]
+script = ExtResource("1_21spo")
+name = "Maat and the Golden Age"
+myth_teller_introductions = Array[String](["Now I tell you of the golden age of Maat."])
+myth_teller_question_introductions = Array[String](["Now then, let us see if you have listened..."])
+positive_reaction = "That is Good!"
+negative_reaction = "Wrong!"
+myth_base = Array[ExtResource("1_ykifd")]([SubResource("Resource_bmtol"), SubResource("Resource_x4g0p")])
+generations = 0

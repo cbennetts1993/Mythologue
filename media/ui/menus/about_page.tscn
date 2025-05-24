@@ -1,0 +1,159 @@
+[gd_scene load_steps=11 format=3 uid="uid://b862a67dlypng"]
+
+[ext_resource type="PackedScene" uid="uid://drwskd2xatxxd" path="res://media/ui/message_box.tscn" id="1_5ktjc"]
+[ext_resource type="Texture2D" uid="uid://t8itphhvx8vu" path="res://assets/background_scene.png" id="1_xnhjt"]
+[ext_resource type="Script" path="res://media/ui/buttons/Return.gd" id="2_wspj8"]
+[ext_resource type="Theme" uid="uid://cdur805sc8olm" path="res://media/ui/themes/basic_theme.tres" id="3_xbywc"]
+[ext_resource type="PackedScene" uid="uid://b21nluxsc7oxj" path="res://media/star_particle.tscn" id="5_snehf"]
+[ext_resource type="AudioStream" uid="uid://cj3rqngy2kxuu" path="res://assets/drum.wav" id="6_sc324"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_y7b6j"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_rgiyc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.557514, 0.940909), -1.79207, -1.79207, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8wbar"]
+curve = SubResource("Curve_rgiyc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ixupu"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(350, 120, 1)
+angle_max = 360.0
+angular_velocity_min = 15.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.15
+color = Color(0.74902, 1, 0.996078, 0.619608)
+alpha_curve = SubResource("CurveTexture_8wbar")
+
+[node name="AboutPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xnhjt")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 128
+
+[node name="RichTextLabel" parent="MarginContainer" instance=ExtResource("1_5ktjc")]
+custom_minimum_size = Vector2(440, 1024)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Mythologue is a game about retelling myths.
+
+take on the role of generations of storytellers and listeners, passing down myths from one generation to the next.
+ 
+you will be expected to recite the tales you hear... but be careful, for any changes you make to the myth might slip through and forever change the story for future generations!
+
+of course, the storyteller will only let you get away with so many differences from the myth as they know it! "
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 976.0
+offset_right = 10.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 128
+metadata/_edit_group_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer2"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_xbywc")
+text = "References"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" parent="MarginContainer2/ScrollContainer/VBoxContainer" instance=ExtResource("1_5ktjc")]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
+text = "Isis and the Noblewoman I & II - J.P.Allen, \"The Art of Medicine in Ancient Egypt\" (2005)"
+
+[node name="RichTextLabel2" parent="MarginContainer2/ScrollContainer/VBoxContainer" instance=ExtResource("1_5ktjc")]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
+text = "Maat and the Golden Age - F. Dunand & C. Zivie-Coche, \"Gods and Men in Egypt\", p. 54"
+
+[node name="Return" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -102.0
+offset_top = -46.0
+offset_right = -19.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_xbywc")
+theme_override_font_sizes/font_size = 18
+text = "Return"
+script = ExtResource("2_wspj8")
+
+[node name="GPUParticles2D2" parent="." instance=ExtResource("5_snehf")]
+material = SubResource("CanvasItemMaterial_y7b6j")
+position = Vector2(256, 128)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_ixupu")
+explosiveness = 0.2
+randomness = 0.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_sc324")
+pitch_scale = 0.5
+
+[connection signal="mouse_entered" from="Return" to="AudioStreamPlayer" method="play"]
+[connection signal="pressed" from="Return" to="Return" method="_on_pressed"]
+
+[editable path="MarginContainer/RichTextLabel"]
+[editable path="MarginContainer2/ScrollContainer/VBoxContainer/RichTextLabel"]
+[editable path="MarginContainer2/ScrollContainer/VBoxContainer/RichTextLabel2"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1atfxvxs5ntg"]
+
+[ext_resource type="Script" path="res://Test.gd" id="1_2jd6m"]
+[ext_resource type="Resource" uid="uid://dn66ql31ytbai" path="res://src/myths/MythSegment/test_myth_segment.tres" id="2_fneuu"]
+
+[node name="Test" type="Node"]
+script = ExtResource("1_2jd6m")
+test_myth_segment = ExtResource("2_fneuu")

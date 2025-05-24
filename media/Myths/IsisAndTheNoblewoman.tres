@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="Myth" load_steps=10 format=3 uid="uid://cfw86raxx72jw"]
+
+[ext_resource type="Script" path="res://src/myths/MythData.gd" id="1_0icqa"]
+[ext_resource type="Script" path="res://src/myths/MythSegment/MythSegment.gd" id="1_dmsls"]
+
+[sub_resource type="Resource" id="Resource_y0udn"]
+script = ExtResource("1_dmsls")
+_base_text = "My heart became sad for the little one because of her, enough to give life to the innocent one. I called to her, saying: \"Come to me, come to me! Look, my mouth has life. I am a knowledgeable daughter of her town, who can repel the scurrying serpent with her utterance, for my father has taught me to know. I am his beloved, bodily daughter.\""
+text = "My heart became sad for the little one because of her, enough to give life to the innocent one. I called to her, saying: \"Come to me, come to me! Look, my mouth has life. I am a knowledgeable daughter of her town, who can repel the scurrying serpent with her utterance, for my father has taught me to know. I am his beloved, bodily daughter.\""
+divergence_history = {}
+question = "Tell me, what did i call to the noblewoman?"
+
+[sub_resource type="Resource" id="Resource_ufead"]
+script = ExtResource("1_dmsls")
+_base_text = "Isis laid her hands on the child to give life to the one being asphyxiated, saying: \"Tefen's poison, come! Come out on the ground! You shall not course, you shall not enter. Befhet's poison, come! Come out on the ground!"
+text = "Isis laid her hands on the child to give life to the one being asphyxiated, saying: \"Tefen's poison, come! Come out on the ground! You shall not course, you shall not enter. Befhet's poison, come! Come out on the ground!"
+divergence_history = {}
+question = "How did I attend to the child, and draw Tefen's and Befhet's poisons?"
+
+[sub_resource type="Resource" id="Resource_rm6bg"]
+script = ExtResource("1_dmsls")
+_base_text = "You have fallen down, poison of Mestet; you cannot run, poison of Mestefet; you cannot rise, poison of Petet and Tjetet; you cannot proceed, Matet. Fall down, mouth of the biter, for Isis has spoken, the goddess great of magic at the fore of the gods, to whom Geb has given his effectiveness to bar poison with her control."
+text = "You have fallen down, poison of Mestet; you cannot run, poison of Mestefet; you cannot rise, poison of Petet and Tjetet; you cannot proceed, Matet. Fall down, mouth of the biter, for Isis has spoken, the goddess great of magic at the fore of the gods, to whom Geb has given his effectiveness to bar poison with her control."
+divergence_history = {}
+question = "How did I drawn forth the venoms of Mestet, Mestefet and Matet?"
+
+[sub_resource type="Resource" id="Resource_2a4x4"]
+script = ExtResource("1_dmsls")
+_base_text = "Be barred! Reverse! Retreat! Back, poison! Don't spring up! So says the Sun's beloved, egg of the goose who came from the sycamore."
+text = " Be barred! Reverse! Retreat! Back, poison! Don't spring up! So says the Sun's beloved, egg of the goose who came from the sycamore."
+divergence_history = {}
+question = "How did I bar the poison in the child?"
+
+[sub_resource type="Resource" id="Resource_snp0b"]
+script = ExtResource("1_dmsls")
+_base_text = "Now look, my words have been commanded since nightfall. I speak to you, I alone. Don't pull down our names throughout the nomes. Don't acknowledge the black, don't ask the red, don't look at the noblewomen in their houses. Keep your face down on the path until we reach the hiding place in Khemmis. Oh, may the child live and the poison die, may the Sun live and the poison die: then Horus will become healthy for his mother Isis, then he who is suffering will become healthy as well.\""
+text = "Now look, my words have been commanded since nightfall. I speak to you, I alone. Don't pull down our names throughout the nomes. Don't acknowledge the black, don't ask the red, don't look at the noblewomen in their houses. Keep your face down on the path until we reach the hiding place in Khemmis. Oh, may the child live and the poison die, may the Sun live and the poison die: then Horus will become healthy for his mother Isis, then he who is suffering will become healthy as well.\""
+divergence_history = {}
+question = "What did I say to my servants who had harmed the boy?"
+
+[sub_resource type="Resource" id="Resource_bn21e"]
+script = ExtResource("1_dmsls")
+_base_text = "The fire was quenched, the sky grew calm at the utterance of Isis the goddess. The rich woman came and brought me her property; she filled the house of the lowly woman with food for the lowly child, for her door had been opened to me while the rich woman was upset. She went around in the night alone and bitter, her son was bitten, and the lowly woman got her property - as the result of her not opening to me."
+text = "The fire was quenched, the sky grew calm at the utterance of Isis the goddess. The rich woman came and brought me her property; she filled the house of the lowly woman with food for the lowly child, for her door had been opened to me while the rich woman was upset. She went around in the night alone and bitter, her son was bitten, and the lowly woman got her property - as the result of her not opening to me."
+divergence_history = {}
+question = "What happened to the rich woman in the end?"
+
+[sub_resource type="Resource" id="Resource_221x0"]
+script = ExtResource("1_dmsls")
+_base_text = "Oh, may the child live and the poison die: then Horus will become healthy for his mother Isis, then everyone who is suffering will become healthy as well. Bread of emmer is what will repel poison so that it retreats; the fiery bulbs of onion is what will repel fever from the body."
+text = "Oh, may the child live and the poison die: then Horus will become healthy for his mother Isis, then everyone who is suffering will become healthy as well. Bread of emmer is what will repel poison so that it retreats; the fiery bulbs of onion is what will repel fever from the body."
+divergence_history = {}
+question = "tell me, what is it that repels the poison, that you might use it for yourself?"
+
+[resource]
+script = ExtResource("1_0icqa")
+name = "Isis and the Noblewoman II"
+myth_teller_introductions = Array[String](["I am the goddess Isis. Let us continue now my tale of the noblewoman.", "Listen now to the goddess Isis. Hear what happened to the Noblewoman."])
+myth_teller_question_introductions = Array[String](["Now then, show me what you have learned..."])
+positive_reaction = "Good, you have listened to Isis."
+negative_reaction = "You should listen better next time."
+myth_base = Array[ExtResource("1_dmsls")]([SubResource("Resource_y0udn"), SubResource("Resource_ufead"), SubResource("Resource_rm6bg"), SubResource("Resource_2a4x4"), SubResource("Resource_snp0b"), SubResource("Resource_bn21e"), SubResource("Resource_221x0")])
+generations = 0

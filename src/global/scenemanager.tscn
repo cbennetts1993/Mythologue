@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpj5snv12opb4"]
+
+[ext_resource type="Script" path="res://src/global/SceneLoader.gd" id="1_1bore"]
+[ext_resource type="PackedScene" uid="uid://cte5avoer8et7" path="res://mainmenu.tscn" id="2_x5syh"]
+
+[node name="Node" type="Node"]
+process_mode = 3
+script = ExtResource("1_1bore")
+main_scene = ExtResource("2_x5syh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://b21nluxsc7oxj"]
+
+[ext_resource type="Texture2D" uid="uid://dbyehoxlknkdp" path="res://assets/star.png" id="1_2ms4i"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_08j44"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Curve" id="Curve_m0llg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.557514, 0.940909), -1.79207, -1.79207, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_j726l"]
+curve = SubResource("Curve_m0llg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_six8v"]
+particle_flag_disable_z = true
+angle_max = 360.0
+angular_velocity_min = 15.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.3
+color = Color(0.748439, 1, 0.997312, 1)
+alpha_curve = SubResource("CurveTexture_j726l")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_08j44")
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_six8v")
+texture = ExtResource("1_2ms4i")
+preprocess = 1.0
+speed_scale = 0.33
+explosiveness = 0.3
+randomness = 0.25

@@ -1,0 +1,123 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8lume15emfiw"]
+
+[ext_resource type="Theme" uid="uid://cdur805sc8olm" path="res://media/ui/themes/basic_theme.tres" id="1_g5xyp"]
+[ext_resource type="Texture2D" uid="uid://i1ygmure1m81" path="res://assets/div_icon.png" id="2_08n80"]
+[ext_resource type="Script" path="res://src/ui/myth_select_panel.gd" id="2_u7rkc"]
+[ext_resource type="Texture2D" uid="uid://2ucg0r5mwv6k" path="res://assets/gen_icon.png" id="3_jsuj3"]
+[ext_resource type="Script" path="res://src/myths/MythData.gd" id="3_qa64j"]
+[ext_resource type="PackedScene" uid="uid://bfbfsxtv3oxjp" path="res://media/ui/menus/myth_event_screen.tscn" id="3_tnu3m"]
+[ext_resource type="AudioStream" uid="uid://cj3rqngy2kxuu" path="res://assets/drum.wav" id="7_tqpcu"]
+
+[sub_resource type="Resource" id="Resource_v1pmv"]
+script = ExtResource("3_qa64j")
+name = ""
+myth_teller_introductions = Array[String]([])
+myth_teller_question_introductions = Array[String]([])
+positive_reaction = ""
+negative_reaction = ""
+myth_base = Array[Resource("res://src/myths/MythSegment/MythSegment.gd")]([])
+generations = 0
+
+[node name="myth_selection_panel" type="MarginContainer" node_paths=PackedStringArray("myth_title_label", "myth_generation_count_label", "myth_divergence_label")]
+custom_minimum_size = Vector2(400, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -37.0
+offset_right = 200.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+mouse_filter = 2
+theme = ExtResource("1_g5xyp")
+script = ExtResource("2_u7rkc")
+myth_sequence_scene = ExtResource("3_tnu3m")
+myth_title_label = NodePath("MarginContainer/HBoxContainer/Myth")
+myth_generation_count_label = NodePath("MarginContainer/HBoxContainer/HBoxContainer2/Generations")
+myth_divergence_label = NodePath("MarginContainer/HBoxContainer/HBoxContainer/Divergence")
+current_myth = SubResource("Resource_v1pmv")
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxContainer2"]
+self_modulate = Color(0.498655, 0.629146, 0.776681, 1)
+z_index = 2
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource("3_jsuj3")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Generations" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer2"]
+z_index = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Myth" type="Label" parent="MarginContainer/HBoxContainer"]
+z_index = 2
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Maat"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+self_modulate = Color(0.498655, 0.629146, 0.776681, 1)
+z_index = 2
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("2_08n80")
+expand_mode = 1
+stretch_mode = 4
+flip_v = true
+
+[node name="Divergence" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+z_index = 2
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_tqpcu")
+pitch_scale = 0.5
+
+[connection signal="mouse_entered" from="Button" to="AudioStreamPlayer" method="play"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

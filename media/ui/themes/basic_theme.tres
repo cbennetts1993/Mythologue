@@ -1,0 +1,79 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cdur805sc8olm"]
+
+[ext_resource type="FontFile" uid="uid://dg65x4j3urfbp" path="res://assets/antiquity-print.ttf" id="1_3iag1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yytg1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xpr7"]
+bg_color = Color(0.239422, 0.354017, 0.498707, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.818265, 0.721253, 0.0173533, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhjs3"]
+bg_color = Color(0.174486, 0.26692, 0.38352, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyh06"]
+bg_color = Color(0.131844, 0.208121, 0.304302, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.163378, 0.174548, 0.178096, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_truhf"]
+bg_color = Color(0.174486, 0.26692, 0.38352, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_3iag1")
+Button/styles/focus = SubResource("StyleBoxEmpty_yytg1")
+Button/styles/hover = SubResource("StyleBoxFlat_4xpr7")
+Button/styles/normal = SubResource("StyleBoxFlat_mhjs3")
+Button/styles/pressed = SubResource("StyleBoxFlat_pyh06")
+Label/colors/font_outline_color = Color(0.0402688, 0.0402688, 0.0402688, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.568627)
+Label/constants/outline_size = 12
+Label/constants/shadow_offset_x = 3
+Label/constants/shadow_offset_y = 2
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_3iag1")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_truhf")

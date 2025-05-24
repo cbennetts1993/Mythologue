@@ -1,0 +1,184 @@
+[gd_scene load_steps=20 format=3 uid="uid://cte5avoer8et7"]
+
+[ext_resource type="Theme" uid="uid://cdur805sc8olm" path="res://media/ui/themes/basic_theme.tres" id="1_45w5p"]
+[ext_resource type="Texture2D" uid="uid://t8itphhvx8vu" path="res://assets/background_scene.png" id="2_knvlv"]
+[ext_resource type="Script" path="res://media/ui/buttons/SceneLoaderButton.gd" id="2_nyw6k"]
+[ext_resource type="PackedScene" uid="uid://b862a67dlypng" path="res://media/ui/menus/about_page.tscn" id="3_v654s"]
+[ext_resource type="PackedScene" uid="uid://ckq5dt62211w8" path="res://media/ui/menus/myth_select_page.tscn" id="3_wu1ut"]
+[ext_resource type="Script" path="res://media/ui/buttons/ExitButton.gd" id="4_ntix7"]
+[ext_resource type="Texture2D" uid="uid://b7v5sixw8mw4k" path="res://assets/dust.png" id="7_4dmni"]
+[ext_resource type="PackedScene" uid="uid://b21nluxsc7oxj" path="res://media/star_particle.tscn" id="8_i3u3l"]
+[ext_resource type="AudioStream" uid="uid://cj3rqngy2kxuu" path="res://assets/drum.wav" id="9_puwnu"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_myr8b"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_m0llg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.557514, 0.940909), -1.79207, -1.79207, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yygwd"]
+curve = SubResource("Curve_m0llg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k3nbi"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(350, 120, 1)
+angle_max = 360.0
+angular_velocity_min = 15.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.15
+color = Color(0.74902, 1, 0.996078, 0.619608)
+alpha_curve = SubResource("CurveTexture_yygwd")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8o7in"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Curve" id="Curve_55esr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.743043, 0.735829), -1.36717, -1.36717, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1wpmr"]
+curve = SubResource("Curve_55esr")
+
+[sub_resource type="Curve" id="Curve_cswmq"]
+min_value = -0.5
+max_value = 0.5
+_data = [Vector2(0, 0.579412), 0.0, 0.0, 0, 0, Vector2(0.501855, -0.237433), -2.94332, -2.94332, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_rlipx"]
+curve_y = SubResource("Curve_cswmq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xyvo1"]
+lifetime_randomness = 0.15
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(0, 400, 0)
+direction = Vector3(-1, 0, 0)
+spread = 15.0
+initial_velocity_min = 30.0
+initial_velocity_max = 80.0
+directional_velocity_min = -80.0
+directional_velocity_max = 0.0
+directional_velocity_curve = SubResource("CurveXYZTexture_rlipx")
+gravity = Vector3(0, 0, 0)
+damping_max = 2.0
+scale_min = 0.05
+scale_max = 0.15
+color = Color(0.917943, 0.754837, 0.315792, 1)
+alpha_curve = SubResource("CurveTexture_1wpmr")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_45w5p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.172842, 0.231807, 0.399739, 1)
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_knvlv")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="GPUParticles2D2" parent="." instance=ExtResource("8_i3u3l")]
+material = SubResource("CanvasItemMaterial_myr8b")
+position = Vector2(256, 128)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_k3nbi")
+explosiveness = 0.2
+randomness = 0.5
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_8o7in")
+position = Vector2(768, 768)
+amount = 18
+process_material = SubResource("ParticleProcessMaterial_xyvo1")
+texture = ExtResource("7_4dmni")
+lifetime = 20.0
+preprocess = 10.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 176.0
+offset_right = 752.0
+offset_bottom = 328.0
+theme_override_font_sizes/font_size = 64
+text = "Mythologue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -91.0
+offset_right = 47.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+metadata/_edit_group_ = true
+
+[node name="MythsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Myths"
+script = ExtResource("2_nyw6k")
+scene = ExtResource("3_wu1ut")
+
+[node name="AboutButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "About"
+script = ExtResource("2_nyw6k")
+scene = ExtResource("3_v654s")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -126.0
+offset_right = 18.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Exit"
+script = ExtResource("4_ntix7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_puwnu")
+pitch_scale = 0.5
+
+[connection signal="mouse_entered" from="VBoxContainer/MythsButton" to="AudioStreamPlayer" method="play"]
+[connection signal="mouse_entered" from="VBoxContainer/AboutButton" to="AudioStreamPlayer" method="play"]
+[connection signal="mouse_entered" from="Button" to="AudioStreamPlayer" method="play"]

@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="Myth" load_steps=9 format=3 uid="uid://cvkyxnwud7o06"]
+
+[ext_resource type="Script" path="res://src/myths/MythSegment/MythSegment.gd" id="1_1umam"]
+[ext_resource type="Script" path="res://src/myths/MythData.gd" id="2_v8vnu"]
+
+[sub_resource type="Resource" id="Resource_ebw5o"]
+script = ExtResource("1_1umam")
+_base_text = "I went out at the time of evening, and seven scorpions went out behind me that they might serve me: Tefen and Befen on both sides of me; Mestet and Mestefet under my bed; Petet, Tjetet, and Matet sweeping the way for me."
+text = "I went out at the time of evening, and seven scorpions went out behind me that they might serve me: Tefen and Befen on both sides of me; Mestet and Mestefet under my bed; Petet, Tjetet, and Matet sweeping the way for me."
+divergence_history = {}
+question = "Tell me then, who were my servants who lead the way for me?"
+
+[sub_resource type="Resource" id="Resource_ichj3"]
+script = ExtResource("1_1umam")
+_base_text = "I ordered them very, very strongly, and my speech proceeded into their ears: \"Don't know the black, don't ask the red, don't recognise the upper-class man from the lower-class. Keep your face down on the path; beware of letting him who seeks me go before we have reached Persui, the town of the two sisters at the front of the marsh and the rear of Buto. \""
+text = "I ordered them very, very strongly, and my speech proceeded into their ears: \"Don't know the black, don't ask the red, don't recognise the upper-class man from the lower-class. Keep your face down on the path; beware of letting him who seeks me go before we have reached Persui, the town of the two sisters at the front of the marsh and the rear of Buto. \""
+divergence_history = {}
+question = "How did I order my servants as we went along our path?"
+
+[sub_resource type="Resource" id="Resource_f1ohd"]
+script = ExtResource("1_1umam")
+_base_text = "And when I reached the houses of married women, a noblewoman saw me on the way and shut her doors on me, since she was upset at those who were with me."
+text = "And when I reached the houses of married women, a noblewoman saw me on the way and shut her doors on me, since she was upset at those who were with me."
+divergence_history = {}
+question = "How did the noblewoman act react when I approached?"
+
+[sub_resource type="Resource" id="Resource_ju1qy"]
+script = ExtResource("1_1umam")
+_base_text = "They consulted about her and put their poison together on the tip of the stinger of Tefen. A lowly woman opened her doorway to me so that her humble house could be entered, and Tefen entered under the door-leaves of the rich woman's doorway and stung the rich woman's son."
+text = "They consulted about her and put their poison together on the tip of the stinger of Tefen. A lowly woman opened her doorway to me so that her humble house could be entered, and Tefen entered under the door-leaves of the rich woman's doorway and stung the rich woman's son."
+divergence_history = {}
+question = "What did my servants do to punish the noblewoman?"
+
+[sub_resource type="Resource" id="Resource_3sop2"]
+script = ExtResource("1_1umam")
+_base_text = "Fire broke out in the rich woman's house and there was no water there to quench it; the sky rained on the rich woman's house though it was not the season for it - for she did not open to me."
+text = "Fire broke out in the rich woman's house and there was no water there to quench it; the sky rained on the rich woman's house though it was not the season for it - for she did not open to me."
+divergence_history = {}
+question = "Tell me, what happened to the noblewomand's house?"
+
+[sub_resource type="Resource" id="Resource_ed6wg"]
+script = ExtResource("1_1umam")
+_base_text = "Her heart became sad, since it was not known whether he would live. When she went around her town wailing in grief, there was no one who came at her voice."
+text = "Her heart became sad, since it was not known whether he would live. When she went around her town wailing in grief, there was no one who came at her voice."
+divergence_history = {}
+question = "How did the Noblewoman react to the fire and to her son?"
+
+[resource]
+script = ExtResource("2_v8vnu")
+name = "Isis and the Noblewoman I"
+myth_teller_introductions = Array[String](["I am Isis. Hear my story.", "Listen now to the goddess Isis."])
+myth_teller_question_introductions = Array[String](["Now then, show me what you have learned..."])
+positive_reaction = "Good, you have listened to Isis."
+negative_reaction = "You should listen better next time."
+myth_base = Array[ExtResource("1_1umam")]([SubResource("Resource_ebw5o"), SubResource("Resource_ichj3"), SubResource("Resource_f1ohd"), SubResource("Resource_ju1qy"), SubResource("Resource_3sop2"), SubResource("Resource_ed6wg")])
+generations = 0
